@@ -1,0 +1,31 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<Dialog title="{i18n>OKULINFO}" draggable="true" resizable="true">
+		<content>
+			<f:SimpleForm id="idNewForm" binding="{myModel>/newRecord}" editable="false" layout="ResponsiveGridLayout">
+				<f:content>
+					<Label text="{i18n>SATICI}" labelFor="idInpLifnr"/>
+					<Input id="idInpLifnr" value="{myModel>Lifnr}"/>
+					<Label text="{i18n>NAME1}" labelFor="idInName1"/>
+					<Input id="idInName1" value="{myModel>Name1}"/>
+					<!--<Label text="{i18n>ERDAT}" labelFor="idInpErdat"/>-->
+					<!--<Input id="idInpErdat" value="{myModel>Erdat}"/>-->
+					<!--<Label text="{i18n>ERNAM}" labelFor="idInpErnam"/>-->
+					<!--<Input id="idInpErnam" value="{myModel>Ernam}"/>-->
+					<Label text="{i18n>STATU}" labelFor="idInpStatu"/>
+					<ComboBox id="idInpStatu" change="onHandleCombobox">
+						<core:Item text="Onay Bekliyor" key="B"/>
+						<core:Item text="Onaylandı" key="O"/>
+						<core:Item text="Ödendi" key="S"/>
+					</ComboBox>
+				</f:content>
+			</f:SimpleForm>
+		</content>
+		<beginButton/>
+		<buttons>
+			<Button text="{i18n>SAVE}" iconFirst="true" width="auto" enabled="true" iconDensityAware="false" press="onDialogSave"/>
+			<Button text="{i18n>CANCEL}" iconFirst="true" width="auto" iconDensityAware="false" press="onCancel"/>
+		</buttons>
+		<customHeader/>
+		<endButton/>
+	</Dialog>
+</core:FragmentDefinition>

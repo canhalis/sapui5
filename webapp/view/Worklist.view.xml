@@ -1,0 +1,49 @@
+<mvc:View controllerName="zficari.zficari.controller.Worklist" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.f.semantic"
+	xmlns:footerbar="sap.ushell.ui.footerbar" xmlns:smartVariant="sap.ui.comp.smartvariants" xmlns:core="sap.ui.core"
+	xmlns:smartFilterBar="sap.ui.comp.smartfilterbar" xmlns:cd="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+	xmlns:smartTable="sap.ui.comp.smarttable" xmlns:l="sap.ui.layout" xmlns:table="sap.ui.table">
+	<semantic:SemanticPage id="page" headerPinnable="false" toggleHeaderOnTitleClick="false">
+		<semantic:titleHeading>
+			<!--<smartVariant:SmartVariantManagement id="pageVariant" persistencyKey="SmartVariantPKey"/>-->
+			<Label text="Seçim Alanı" design="Bold" width="100%" displayOnly="true"/>
+		</semantic:titleHeading>
+		<semantic:headerContent>
+			<smartFilterBar:SmartFilterBar id="smartFilterBar" entitySet="mainSet" persistencyKey="SmartFilterPKey" smartVariant="pageVariant"
+				useToolbar="false"></smartFilterBar:SmartFilterBar>
+		</semantic:headerContent>
+		<semantic:content>
+			<smartTable:SmartTable id="smartTable" showTablePersonalisation="true" entitySet="mainSet" smartFilterId="smartFilterBar"
+				requestAtLeastFields="Lifnr,Name1,Erdat,Ernam,Statu" ignoredFields="Statu" initiallyVisibleFields="Lifnr,Name1,Erdat,Ernam"
+				enableAutoBinding="true" cd:dateFormatSettings='\{"pattern":"dd.MM.yyyy"\}' showFullScreenButton="true"
+				class="sapUiResponsiveContentPadding" tableType="ResponsiveTable" useExportToExcel="true" smartVariant="pageVariant"
+				useVariantManagement="true" useTablePersonalisation="true" header="{i18n>worklistTableTitle}" showRowCount="true"
+				beforeRebindTable="onBeforeRebindTable" persistencyKey="variantBankaDosya">
+				<smartTable:customToolbar>
+					<OverflowToolbar design="Solid">
+						<ToolbarSpacer/>
+						<OverflowToolbarButton icon="sap-icon://add" tooltip="Yeni Kayıt" text="Yeni Kayıt" press="onNewRecord"/>
+					</OverflowToolbar>
+				</smartTable:customToolbar>
+				<!--<Table id="innerUi5Table" growing="true">-->
+				<!--	<ColumnListItem highlight="{= ${Statu} === 'B' ? 'Information' : ${Statu} === 'O' ? 'Warning' : 'Success' }"/>-->
+				<!--</Table>-->
+				<table:Table id="idTableRes" selectionMode="None" visibleRowCount="10">
+					<table:columns>
+						<table:Column hAlign="Begin" sortProperty="Lifnr" filterProperty="Lifnr">
+							<table:customData>
+								<core:CustomData key="p13nData" value='\{"columnKey": "Lifnr", "leadingProperty": "Lifnr"}'/>
+							</table:customData>
+							<Text text="Satıcı Numarası" wrapping="false"/>
+							<table:template>
+								<ObjectListItem title="{Lifnr}" highlight="{= ${Statu} === 'B' ? 'Information' : ${Statu} === 'O' ? 'Warning' : 'Success' }"/>
+							</table:template>
+						</table:Column>
+					</table:columns>
+				</table:Table>
+				<smartTable:layoutData>
+					<FlexItemData growFactor="1" baseSize="0%"/>
+				</smartTable:layoutData>
+			</smartTable:SmartTable>
+		</semantic:content>
+	</semantic:SemanticPage>
+</mvc:View>
